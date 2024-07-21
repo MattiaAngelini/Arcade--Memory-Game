@@ -1,77 +1,14 @@
-const cards = [
-    {
-        "id": 1,
-        "media": "1",
-    },
-    {
-        "id": 1,
-        "media": "1",
-    },
 
-    {
-        "id": 2,     
-        "media": "2",
-    },
-    {
-        "id": 2,     
-        "media": "2",
-    },
 
-    {
-        "id": 3,
-        "media": "3",
-    },
-    {
-        "id": 3,
-        "media": "3",
-    },
-
-    {
-        "id": 4,   
-        "media": "4",
-    },
-    {
-        "id": 4,   
-        "media": "4",
-    },
-
-    {
-        "id": 5,   
-        "media": "5"
-    },
-    {
-        "id": 5,   
-        "media": "5"
-    },
-
-    {
-        "id": 6,    
-        "media": "6",
-    },
-    {
-        "id": 6,    
-        "media": "6",
-    },
-
-];
-console.log(cards[0]);
+const cards = [1,1,2,2,3,3,4,4,5,5,6,6];
 const gridGame = document.querySelector(".grid-game");
 const square = document.querySelector(".square");
 
+shuffle(cards);
 
-//Creo 12 div e li appendo alla griglia, 
-//il contenuto dei div dev'essere id cards
+//FUNZIONI
 
-
-//Ciclo che itera nell'array cards e crea un div contenente
-//id delle cards
-for(let i = 0; i <= cards.length; i++){ 
-    let squareRandom = cards[i];
-    const newSquare = createDiv(squareRandom.id);
-    gridGame.append(newSquare); 
-}
-
-//Funzione crea div
+//crea div che si aggiungono alla griglia,hanno contenuto parametro 'number'
 function createDiv(number) {
     let newDiv = document.createElement('div');
     newDiv.classList.add('square');
@@ -79,9 +16,19 @@ function createDiv(number) {
     return newDiv;
   }
 
+  //Carte random
+  function shuffle(array) {
 
-
-
+    for (let i = array.length - 1; i > 0; i--) {
+        let randomIndex = Math.floor(Math.random() * (i + 1));
+        [array[i], array[randomIndex]] = [array[randomIndex], array[i]];
+    }
+    
+    for (let i = 0; i < array.length; i++) {
+        const newSquare = createDiv(array[i]);
+        gridGame.append(newSquare); 
+    }
+}
 
 
 
